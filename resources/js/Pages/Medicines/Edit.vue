@@ -35,7 +35,10 @@
                 </div>
               </div>
   
-              <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+              <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Update
+              </button>
+
             </form>
           </div>
         </div>
@@ -49,7 +52,9 @@
   import { Link } from '@inertiajs/vue3';
   import { ref } from 'vue';
   import { useForm } from '@inertiajs/vue3';
-  
+  import { defineProps } from 'vue';
+  //import { Inertia } from  '@inertiajs/inertia';
+
   const props = defineProps({
     medicine: Object
 });
@@ -63,13 +68,6 @@
   });
   
   function updateMedicine() {
-    Inertia.post('/medicines/${props.medicine.id}', {
-        _method: 'put', 
-        name: form.name,
-        price: form.price,
-        quantity: form.quantity,
-        dosage: form.dosage,
-        expdate: form.expdate,
-    }) //35:09
+  form.put(route('medicines.update', props.medicine.id));
   }
   </script>

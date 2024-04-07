@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Medicine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 
 class MedicineController extends Controller
@@ -50,9 +51,20 @@ class MedicineController extends Controller
     {
         return Inertia::render('Medicines/Edit', ['medicine' => $medicine]);  
     }
+    public function update(Request $request, Medicine $medicine)
+    {
+    $request->validate([
+        'name' => ['required', 'string'],
+        'price' => ['required', 'string'],
+        'quantity' => ['required', 'string'],
+        'dosage' => ['required', 'string'],
+        'expdate' => ['required', 'date_format:Y-m-d'],
+    ]);
+
+    $medicine->update($request->all());
+
+    return Redirect::route('medicines.index');
+    }
 
     
-
-    
-
 }

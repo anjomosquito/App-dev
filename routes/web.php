@@ -41,6 +41,7 @@ Route::get('/dashboard', function () {
 Route::get('/medicines', [MedicineController::class, 'index'])->name('medicines.index');
 Route::post('/medicines', [MedicineController::class, 'store'])->name('medicines.store');
 Route::get('/medicines/create', [MedicineController::class, 'create'])->name('medicines.create');
+Route::put('/medicines/{medicine}', [MedicineController::class, 'update'])->name('medicines.update');
 Route::get('/medicines/{medicine}/edit', [MedicineController::class, 'edit'])->name('medicines.edit');
 
 
