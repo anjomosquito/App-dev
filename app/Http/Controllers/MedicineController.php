@@ -66,5 +66,9 @@ class MedicineController extends Controller
     return Redirect::route('medicines.index');
     }
 
-    
+    public function destroy(Medicine $medicine)
+    {
+    $medicine->delete();
+    return Redirect::route('medicines.index')->with('success', 'Medicine has been deleted.');
+    }
 }

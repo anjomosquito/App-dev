@@ -7,6 +7,12 @@ import { Link } from '@inertiajs/vue3';
 const props = defineProps({
     medicines: Array
 });
+function confirmDelete(medicineId) {
+  if (confirm('Are you sure you want to delete this medicine?')) {
+    // Call the deleteMedicine method
+    deleteMedicine(medicineId);
+  }
+}
 </script>
 
 <template>
@@ -72,8 +78,8 @@ const props = defineProps({
                                         <Link :href="'/medicines/' + medicine.id + '/edit'" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                         Edit
                                         </Link>
-                                        <Link :href="'/medicines/' + medicine.id + '/edit'" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        Delete
+                                        <Link :href="`/medicines/${medicine.id}`" method="delete" @click="confirmDelete(medicine.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            Delete
                                         </Link>
                                     </td>
                                     
